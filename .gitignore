@@ -5,6 +5,9 @@ __pycache__/
 # database
 db.sqlite3
 
+# JS+CSS libraries and fonts
+bower_components/
+
 # Distribution / packaging
 bin/
 build/
