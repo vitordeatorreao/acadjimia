@@ -17,12 +17,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from core.views import IndexView
-from django.contrib.auth.views import login, logout
+from core.views import IndexView, login_or_redirect
+from django.contrib.auth.views import logout
 
 urlpatterns = [
     url(r'^$', IndexView.as_view(), name='index'),
-    url(r'^entrar/$', login, {'template_name': 'login.html'}, name="login"),
+    url(r'^entrar/$', login_or_redirect, {'template_name': 'login.html'}, name="login"),
     url(r'^sair/$', logout, {'next_page': 'index'}, name='logout'),
     url(r'^admin/', admin.site.urls),
 ]
