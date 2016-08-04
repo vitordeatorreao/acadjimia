@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load staticfiles %}
+{% load is_active %}
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,9 +43,9 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html"><span class="glyphicon glyphicon-home"
+                    <li class="{% active '^/$' %}"><a href="{% url 'index' %}"><span class="glyphicon glyphicon-home"
                          aria-hidden="true"></span> Início</a></li>
-                    <li><a href="aboutus.html"><span class="glyphicon glyphicon-info-sign"
+                    <li class="{% active '^sobre/$' %}"><a href="aboutus.html"><span class="glyphicon glyphicon-info-sign"
                          aria-hidden="true"></span> Sobre</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"
@@ -58,7 +59,7 @@
                             <li><a href="#">Programação Web</a></li>
                         </ul>
                      </li>
-                    <li><a href="contactus.html">
+                    <li {% active '^contato/$' %}><a href="contactus.html">
                         <i class="fa fa-envelope-o"></i> Contato</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
