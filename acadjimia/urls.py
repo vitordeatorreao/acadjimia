@@ -15,14 +15,17 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+
 from django.conf.urls import url
 from django.contrib import admin
-from core.views import IndexView, login_or_redirect
 from django.contrib.auth.views import logout
+
+from core.views import IndexView, login_or_redirect, RegisterUser
 
 urlpatterns = [
     url(r'^$', IndexView.as_view(), name='index'),
     url(r'^entrar/$', login_or_redirect, {'template_name': 'login.html'}, name="login"),
     url(r'^sair/$', logout, {'next_page': 'index'}, name='logout'),
+    url(r'^criar-conta/$', RegisterUser.as_view(), name='register'),
     url(r'^admin/', admin.site.urls),
 ]
