@@ -1,0 +1,21 @@
+{% load widget_tweaks %}
+
+{% for error in form.non_field_errors %}
+<div class="alert alert-danger">
+    {{ error }}
+</div>
+{% endfor %}
+<form class="form" role="login" method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-group{% if field.errors %} has-error{% endif %}">
+      <label for="{{ field.auto_id }}" class="sr_only">{{ field.label }}</label>
+        {% render_field field class='form-control' %}
+        {% for error in field.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-info btn-sm">Entrar</button>
+    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+</form>

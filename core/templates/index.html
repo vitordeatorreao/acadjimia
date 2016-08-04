@@ -62,9 +62,24 @@
                         <i class="fa fa-envelope-o"></i> Contato</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" id="navBarLoginButton">
-                        <span class="glyphicon glyphicon-log-in"></span> Login
-                    </a></li>
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-user"></span> Minha Conta
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}">
+                            <span class="glyphicon glyphicon-log-out"></span> Sair
+                        </a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="#" id="navBarLoginButton">
+                            <span class="glyphicon glyphicon-log-in"></span> Entrar
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -79,18 +94,7 @@
                     <h4 class="modal-title">Login</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-inline" role="login">
-                        <div class="form-group">
-                            <label for="useremail" class="sr-only">E-mail</label>
-                            <input type="email" class="form-control" id="useremail" name="email" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="userpassword" class="sr-only">Senha</label>
-                            <input type="password" class="form-control" id="userpassword" name="password" placeholder="Password">
-                        </div>
-                        <button type="submit" class="btn btn-info btn-sm">Entrar</button>
-                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
-                    </form>
+                    {% include "loginform.html" %}
                 </div>
             </div>
         </div>
@@ -111,8 +115,9 @@
         </div>
     </header>
 
-    {% block content %}
+
     <div class="container">
+        {% block content %}
         <!-- Carousel -->
 
         <div class="row row-content">
@@ -185,8 +190,8 @@
                 </div>
             </div>
         </div>
-    </div>
     {% endblock %}
+    </div>
 
     <footer class="row-footer">
         <div class="container">

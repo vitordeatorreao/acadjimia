@@ -18,8 +18,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from core.views import IndexView
+from django.contrib.auth.views import login, logout
 
 urlpatterns = [
     url(r'^$', IndexView.as_view(), name='index'),
+    url(r'^entrar/$', login, {'template_name': 'login.html'}, name="login"),
+    url(r'^sair/$', logout, {'next_page': 'index'}, name='logout'),
     url(r'^admin/', admin.site.urls),
 ]
