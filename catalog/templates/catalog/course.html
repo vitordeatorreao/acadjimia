@@ -15,9 +15,15 @@
     <div class="col-sm-8">
         <p>Começa em: {{ course.start_date | date }}</p>
         <p>{{ course.description|linebreaks }}</p>
-        <p>
-            <a href="{% url 'catalog:enroll' course.slug %}"
-                class="btn btn-success">Inscrever-se</a></p>
+        {% if user.is_authenticated %}
+            {% if user in course.enrolled.all %}
+                <p><a href="{% url 'catalog:enroll' course.slug %}"
+                    class="btn btn-success disabled">Inscrito</a></p>
+            {% else %}
+                <p><a href="{% url 'catalog:enroll' course.slug %}"
+                    class="btn btn-success">Inscrever-se</a></p>
+            {% endif %}
+        {% endif %}
     </div>
 </div>
 {% endblock %}

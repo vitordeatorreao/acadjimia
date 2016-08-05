@@ -3,11 +3,15 @@
   padding: 0px 0px;
 }
 .row-content {
-  margin: 0px auto;
-  padding: 50px 0px;
+  margin-bottom: 20px;
   border-bottom: 1px ridge;
-  min-height: 400px;
 }
+
+.message-row {
+  border-bottom: 0px;
+  margin-top: 20px;
+}
+
 .row-footer {
   margin: 0px auto;
   padding: 20px 0px;

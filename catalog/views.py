@@ -1,3 +1,6 @@
+# coding=utf-8
+
+from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 
@@ -27,7 +30,17 @@ class CategoryView(IndexView):
 def enroll(request, slug):
     if request.user.is_authenticated():
         course = get_object_or_404(Course, slug=slug)
-        course.enrolled.add(request.user)
+        if request.user in course.enrolled.all():
+            messages.warning(
+                request,
+                "Você já está inscrito no curso %s." % (course.name)
+            )
+        else:
+            course.enrolled.add(request.user)
+            messages.success(
+                request,
+                "Você se inscreveu no curso %s com sucesso." % (course.name)
+            )
         return redirect('catalog:course', slug=slug)
     else:
         return redirect('catalog:course', slug=slug)

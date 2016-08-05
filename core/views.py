@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, FormView
 from django.views.generic.edit import CreateView
+from django.contrib import messages
 from django.contrib.auth.views import login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
@@ -45,6 +46,13 @@ class RegisterUser(CreateView):
             return redirect('index')
         else:
             return super(RegisterUser, self).dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        messages.success(
+            self.request,
+            "Usuário cadastrado com sucesso."
+        )
+        return super(RegisterUser, self).form_valid(form)
 
 class ContactView(FormView):
 
