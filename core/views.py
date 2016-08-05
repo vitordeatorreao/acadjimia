@@ -68,4 +68,8 @@ class ContactView(FormView):
             ['a@b.com'],
             fail_silently=False
         )
+        messages.success(
+            self.request,
+            "Sua mensagem foi enviada com sucesso! Obrigado por entrar em contato!"
+        )
         return super(ContactView, self).form_valid(form)
