@@ -10,14 +10,14 @@
         <h1 align=center>Cadastre-se na Acadjimia</h1>
     </div>
     <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3">
-        {% for error in register_form.non_field_errors %}
+        {% for error in form.non_field_errors %}
         <div class="alert alert-danger">
             {{ error }}
         </div>
         {% endfor %}
         <form class="form" role="register" method="post" action="{% url 'register' %}">
             {% csrf_token %}
-            {% for field in register_form %}
+            {% for field in form %}
             <div class="form-group{% if field.errors %} has-error{% endif %}">
               <label for="{{ field.auto_id }}" class="sr_only">{{ field.label }}</label>
                 {% render_field field class='form-control' %}

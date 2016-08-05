@@ -42,8 +42,3 @@ class RegisterUser(CreateView):
             return redirect('index')
         else:
             return super(RegisterUser, self).dispatch(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        data = super(RegisterUser, self).get_context_data(**kwargs)
-        data['register_form'] = data.get('form')
-        return data
