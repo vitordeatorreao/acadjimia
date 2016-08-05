@@ -7,7 +7,13 @@
 {% block content %}
 <div class="row row-content">
     <div class="col-xs-12">
-        <h1 align=center>Todos os Cursos</h1>
+        <h1 align=center>
+            {% if category %}
+                Categoria: {{ category.name }}
+            {% else %}
+                Todos os Cursos
+            {% endif %}
+        </h1>
     </div>
     {% for course in courses %}
 	   {% include "catalog/_course.html" %}

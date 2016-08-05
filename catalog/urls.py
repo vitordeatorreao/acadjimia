@@ -14,4 +14,9 @@ urlpatterns = [
         ),
         name='course'
     ),
+    url(
+        r'^categoria/(?P<slug>[\w_-]+)/$',
+        views.CategoryView.as_view(),
+        name='category'
+    ),
 ]
