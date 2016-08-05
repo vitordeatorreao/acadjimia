@@ -15,14 +15,42 @@ class IndexView(ListView):
     model = Course
     template_name = 'catalog/index.html'
 
+class MyCoursesView(ListView):
+
+    paginate_by = 3
+    context_object_name = 'courses'
+    model = Course
+    template_name = 'catalog/index.html'
+
+    def get_queryset(self):
+        """
+        This function will filter the courses on which the user is enrolled
+        """
+        return self.request.user.course_set.all()
+
+    def get_context_data(self, **kwargs):
+        """
+        This function will add a boolean so the template can know the title
+        """
+        data = super(MyCoursesView, self).get_context_data(**kwargs)
+        data['is_mycourses'] = True
+        return data
+
+
 class CategoryView(IndexView):
 
     def get_queryset(self):
+        """
+        This function will filter the courses by category
+        """
         category = get_object_or_404(Category, slug=self.kwargs['slug'])
         courses = Course.objects.filter(category=category)
         return courses
 
     def get_context_data(self, **kwargs):
+        """
+        This function will add the 'category' variable to context
+        """
         data = super(CategoryView, self).get_context_data(**kwargs)
         data['category'] = get_object_or_404(Category, slug=self.kwargs['slug'])
         return data

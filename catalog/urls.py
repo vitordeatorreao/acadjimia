@@ -22,4 +22,5 @@ urlpatterns = [
         views.CategoryView.as_view(),
         name='category'
     ),
+    url(r'^meus-cursos/$', views.MyCoursesView.as_view(), name='mycourses'),
 ]

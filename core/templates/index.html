@@ -70,8 +70,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
                     <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-user"></span> Minha Conta
+                        <a href="{% url 'catalog:mycourses' %}">
+                            <span class="glyphicon glyphicon-education"></span> Meus cursos
                         </a>
                     </li>
                     <li>

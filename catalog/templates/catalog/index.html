@@ -10,6 +10,8 @@
         <h1 align=center>
             {% if category %}
                 Categoria: {{ category.name }}
+            {% elif is_mycourses %}
+                Meus Cursos
             {% else %}
                 Todos os Cursos
             {% endif %}
