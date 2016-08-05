@@ -16,6 +16,7 @@ urlpatterns = [
         ),
         name='course'
     ),
+    url(r'^curso/(?P<slug>[\w_-]+)/inscrever/$', views.enroll, name='enroll'),
     url(
         r'^categoria/(?P<slug>[\w_-]+)/$',
         views.CategoryView.as_view(),

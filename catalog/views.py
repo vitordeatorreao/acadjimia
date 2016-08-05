@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 
 from .models import Course, Category
@@ -23,3 +23,11 @@ class CategoryView(IndexView):
         data = super(CategoryView, self).get_context_data(**kwargs)
         data['category'] = get_object_or_404(Category, slug=self.kwargs['slug'])
         return data
+
+def enroll(request, slug):
+    if request.user.is_authenticated():
+        course = get_object_or_404(Course, slug=slug)
+        course.enrolled.add(request.user)
+        return redirect('catalog:course', slug=slug)
+    else:
+        return redirect('catalog:course', slug=slug)

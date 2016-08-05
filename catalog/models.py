@@ -1,6 +1,7 @@
 # coding=utf-8
 
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -34,6 +35,7 @@ class Course(models.Model):
         'Preço', default=0, decimal_places=2, max_digits=8
     )
     objects = CourseManager()
+    enrolled = models.ManyToManyField(User)
 
     class Meta:
         verbose_name = 'Curso'
