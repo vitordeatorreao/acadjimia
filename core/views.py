@@ -1,13 +1,16 @@
 # coding=utf-8
 
 from django.core.urlresolvers import reverse_lazy
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.views import login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 from catalog.models import Course, Category
+
+from .forms import ContactForm
 
 # Create your views here.
 
@@ -42,3 +45,19 @@ class RegisterUser(CreateView):
             return redirect('index')
         else:
             return super(RegisterUser, self).dispatch(request, *args, **kwargs)
+
+class ContactView(FormView):
+
+    form_class = ContactForm
+    success_url = reverse_lazy('contact')
+    template_name = 'contact.html'
+
+    def form_valid(self, form):
+        send_mail(
+            'Formulário de Contato',
+            form.cleaned_data['message'],
+            form.cleaned_data['email'],
+            ['a@b.com'],
+            fail_silently=False
+        )
+        return super(ContactView, self).form_valid(form)

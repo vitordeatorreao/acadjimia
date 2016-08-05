@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}Contato | Acadjimia{% endblock %}
+
+{% block content %}
+<div class="row row-content">
+    <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3">
+        <h1 align=center>Entre em contato conosco</h1>
+    </div>
+    <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3">
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+        {% endfor %}
+        <form class="form" method="post" action="{% url 'contact' %}">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group{% if field.errors %} has-error{% endif %}">
+              <label for="{{ field.auto_id }}" class="sr_only">{{ field.label }}</label>
+                {% render_field field class='form-control' %}
+                {% for error in field.errors %}
+                <span class="help-block">{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-info btn-sm">Enviar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

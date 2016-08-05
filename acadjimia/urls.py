@@ -21,11 +21,12 @@ from django.contrib import admin
 from django.contrib.auth.views import logout
 from django.views.generic import TemplateView
 
-from core.views import IndexView, login_or_redirect, RegisterUser
+from core.views import IndexView, login_or_redirect, RegisterUser, ContactView
 
 urlpatterns = [
     url(r'^$', IndexView.as_view(), name='index'),
     url(r'^sobre/$', TemplateView.as_view(template_name='aboutus.html'), name='aboutus'),
+    url(r'^contato/$', ContactView.as_view(), name='contact'),
     url(r'^entrar/$', login_or_redirect, {'template_name': 'login.html'}, name="login"),
     url(r'^sair/$', logout, {'next_page': 'index'}, name='logout'),
     url(r'^criar-conta/$', RegisterUser.as_view(), name='register'),
