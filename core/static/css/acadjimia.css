@@ -96,3 +96,18 @@ body {
   position: absolute;
   right: 0px;
 }
+
+.pagination>li>a,
+.pagination>li>span {
+  border: 1px solid #212121;
+  color: black;
+}
+
+.pagination>li.active>a, .pagination>li.active>a:hover {
+  background: #212121;
+  color: #fff;
+  border-top-color: #212121;
+  border-left-color: #212121;
+  border-right-color: #212121;
+  border-bottom-color: #212121;
+}

@@ -7,12 +7,20 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.views import login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
+from catalog.models import Course, Category
+
 # Create your views here.
 
 class IndexView(FormView):
 
     template_name = 'index.html'
     form_class = AuthenticationForm
+
+    def get_context_data(self, **kwargs):
+        data = super(IndexView, self).get_context_data(**kwargs)
+        data['courses'] = Course.objects.featured()
+        data['categories'] = Category.objects.all()
+        return data
 
 def login_or_redirect(request, *args, **kwargs):
     if (request.user.is_authenticated()):

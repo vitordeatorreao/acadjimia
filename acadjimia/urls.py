@@ -16,7 +16,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth.views import logout
 
@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^entrar/$', login_or_redirect, {'template_name': 'login.html'}, name="login"),
     url(r'^sair/$', logout, {'next_page': 'index'}, name='logout'),
     url(r'^criar-conta/$', RegisterUser.as_view(), name='register'),
+    url(r'^catalogo/', include('catalog.urls', namespace='catalog')),
     url(r'^admin/', admin.site.urls),
 ]

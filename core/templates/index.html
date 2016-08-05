@@ -53,10 +53,11 @@
                          <span class="glyphicon glyphicon-list-alt"
                          aria-hidden="true"></span> Categorias <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Python</a></li>
-                            <li><a href="#">Ruby</a></li>
-                            <li><a href="#">Haskell</a></li>
-                            <li><a href="#">Programação Web</a></li>
+                            <li><a href="{% url 'catalog:index' %}">Todos os Cursos</a></li>
+                            <li role="separator" class="divider"></li>
+                            {% for category in categories %}
+                                <li><a href="#">{{ category.name }}</a></li>
+                            {% endfor %}
                         </ul>
                      </li>
                     <li {% active '^contato/$' %}><a href="contactus.html">
@@ -140,41 +141,16 @@
                     </ol>
                     <div class="carousel-inner" role="listbox">
                         <!-- item 0 -->
-                        <div class="item active">
-                            <img class="img-responsive" src="{% static "img/python.png" %}" alt="Uthappizza">
+                        {% for course in courses %}
+                        <div class="item {% if forloop.counter == 1 %}active{% endif %}">
+                            <!-- <img class="img-responsive" src="{% static "img/python.png" %}" alt="Uthappizza"> -->
                             <div class="carousel-caption">
-                                <h2>Introdução ao Python  <span class="label label-danger">Novo</span> <span class="badge">R$144.99</span></h2>
-                                <p>Aprenda a programar na linguagem de
-                                    programação mais popular da década! Não fique
-                                    limitado a apenas aplicações para desktop:
-                                    aprenda a criar aplicações Web e Mobile</p>
+                                <h2>{{ course.name }}  <span class="badge">{{ course.price }}</span></h2>
+                                <p>{{ course.description }}</p>
                                 <p><a class="btn btn-primary btn-xs" href="#">More &raquo;</a></p>
                             </div>
                         </div>
-                        <!-- item 1 -->
-                        <div class="item">
-                            <img class="img-responsive" src="{% static "img/ruby.gif" %}" alt="Buffet">
-                            <div class="carousel-caption">
-                                <h2>Introdução ao Ruby <span class="badge">R$144.99</span></h2>
-                                <p>Aprenda a programar em uma linguagem poderosa
-                                    e cresce a cada ano. Desenvolva poderosas
-                                    aplicações Web utilizando o Rails e não
-                                    passe mais um mês desempregado!</p>
-                                <p><a class="btn btn-primary btn-xs" href="#">More &raquo;</a></p>
-                            </div>
-                        </div>
-                        <!-- item 2 -->
-                        <div class="item">
-                            <img class="img-responsive" src="{% static "img/haskell.png" %}" alt="Alberto Somayya">
-                            <div class="carousel-caption">
-                                <h2>Introdução a Haskell <span class="badge">R$144.99</span></h2>
-                                <p>Aprenda a programar em Haskell, a linguagem
-                                    funcional mais popular! Aprenda um novo
-                                    paradigma e se diferencie no mercado de trabalho!
-                                </p>
-                                <p><a class="btn btn-primary btn-xs" href="#">More &raquo;</a></p>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                     <!-- Controls -->
                     <a class="left carousel-control" href="#mycarousel" role="button" data-slide="prev">

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'active_tag',
     # apps
     'core',
+    'catalog.apps.CatalogConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
