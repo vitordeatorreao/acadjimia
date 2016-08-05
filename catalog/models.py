@@ -28,6 +28,7 @@ class Course(models.Model):
     slug = models.SlugField('Slug')
     category = models.ForeignKey(Category, verbose_name='Categoria')
     description = models.TextField('Descrição', blank=True)
+    start_date = models.DateField('Data de Início', blank=True)
     featured = models.BooleanField('Destaque', default=False, blank=True)
     price = models.DecimalField(
         'Preço', default=0, decimal_places=2, max_digits=8
@@ -35,8 +36,8 @@ class Course(models.Model):
     objects = CourseManager()
 
     class Meta:
-        verbose_name = 'Produto'
-        verbose_name_plural = 'Produtos'
+        verbose_name = 'Curso'
+        verbose_name_plural = 'Cursos'
         ordering = ('name',)
 
     def __str__(self):
