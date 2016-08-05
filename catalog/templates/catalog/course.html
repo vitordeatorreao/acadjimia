@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+
+{% block title %}Produto | Acadjimia{% endblock %}
+
+{% block content %}
+<div class="row row-content">
+    <div class="col-xs-12">
+        <h1 align=center>{{ course.name }}</h1>
+    </div>
+    <div class="col-sm-4">
+        <a href="#" class="thumbnail">
+            <img src="http://placehold.it/350x250" alt="" />
+        </a>
+    </div>
+    <div class="col-sm-8">
+        {{ course.description|linebreaks }}
+    </div>
+</div>
+{% endblock %}

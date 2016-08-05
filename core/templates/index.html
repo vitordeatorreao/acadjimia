@@ -56,7 +56,11 @@
                             <li><a href="{% url 'catalog:index' %}">Todos os Cursos</a></li>
                             <li role="separator" class="divider"></li>
                             {% for category in categories %}
-                                <li><a href="#">{{ category.name }}</a></li>
+                                <li>
+                                    <a href="{% url 'catalog:category' category.slug %}">
+                                        {{ category.name }}
+                                    </a>
+                                </li>
                             {% endfor %}
                         </ul>
                      </li>

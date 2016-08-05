@@ -10,7 +10,9 @@ urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^curso/(?P<slug>[\w_-]+)/$',
         DetailView.as_view(
-            model=Course, context_object_name='course'
+            model=Course,
+            context_object_name='course',
+            template_name='catalog/course.html'
         ),
         name='course'
     ),
