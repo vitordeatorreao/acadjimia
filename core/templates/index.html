@@ -160,9 +160,10 @@
                         <div class="item {% if forloop.counter == 1 %}active{% endif %}">
                             <!-- <img class="img-responsive" src="{% static "img/python.png" %}" alt="Uthappizza"> -->
                             <div class="carousel-caption">
-                                <h2>{{ course.name }}  <span class="badge">{{ course.price }}</span></h2>
+                                <h2>{{ course.name }}  <span class="badge">R$ {{ course.price }}</span></h2>
                                 <p>{{ course.description }}</p>
-                                <p><a class="btn btn-primary btn-xs" href="#">More &raquo;</a></p>
+                                <p><a class="btn btn-primary btn-xs"
+                                    href="{% url 'catalog:course' course.slug %}">More &raquo;</a></p>
                             </div>
                         </div>
                         {% endfor %}
@@ -196,10 +197,10 @@
                 <div class="col-xs-5 col-xs-offset-1 col-sm-2 col-sm-offset-1">
                     <h5>Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Início</a></li>
-                        <li><a href="#">Sobre</a></li>
-                        <li><a href="#">Cursos</a></li>
-                        <li><a href="#">Contato</a></li>
+                        <li><a href="{% url 'index' %}">Início</a></li>
+                        <li><a href="{% url 'aboutus' %}">Sobre</a></li>
+                        <li><a href="{% url 'catalog:index' %}">Cursos</a></li>
+                        <li><a href="{% url 'contact' %}">Contato</a></li>
                     </ul>
                 </div>
                 <div class="col-xs-6 col-sm-5">
